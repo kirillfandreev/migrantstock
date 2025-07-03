@@ -33,8 +33,10 @@
 library("tidyverse")
 library("readxl")
 source("msglobals_KA.r", local = TRUE)
-source("msglobals_DG.r", local = TRUE)
-source("msglobals_NL.r", local = TRUE)
+source("msglobals_KJ.r", local = TRUE)  # UN notebook JB's office 
+
+# source("msglobals_DG.r", local = TRUE)
+# source("msglobals_NL.r", local = TRUE)
 # source("msglobals_KU.r", local = TRUE)
 # source("msglobals_KD.r", local = TRUE)
 
@@ -105,10 +107,15 @@ msglobalsfct <- function() {
     if((Sys.getenv("USERNAME") == "Kirill" && Sys.getenv("COMPUTERNAME") == "KASPECTRA")|
        (Sys.getenv("USERNAME") == "Kirill.Andreev" && Sys.getenv("COMPUTERNAME") == "WIN7ENT-AP8P18S") |
        (Sys.getenv("USERNAME") == "Kirill.Andreev" && Sys.getenv("COMPUTERNAME") == "W10LT-PF3AZK0E")  |
-       (Sys.getenv("USERNAME") == "Kirill" && Sys.getenv("COMPUTERNAME") == "KADELL23")){
+       (Sys.getenv("USERNAME") == "Kirill" && Sys.getenv("COMPUTERNAME") == "KADELL23")){ 
         # browser()
         msglobals[["UserName"]]  <- "KA"
         ret <- msglobals_KA()
+    } else 
+    if(Sys.getenv("USERNAME") ==  "KANDREEV" && Sys.getenv("COMPUTERNAME") == "UNHQESAPF3AZK0E") {
+      # browser()
+      msglobals[["UserName"]]  <- "KJ"
+      ret <- msglobals_KJ()
     } else 
     if(Sys.getenv("USERNAME") == "MunSim.Lai" && Sys.getenv("COMPUTERNAME") == "W10LT-PF2S0TFN"){
         msglobals[["UserName"]]  <- "NL"
