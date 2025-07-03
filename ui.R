@@ -4,6 +4,7 @@ library(shinyjs)
 
 source("msglobalsf.r", local = TRUE)
 
+
 # Set initial window size
 # shinyOptions(height = 1600, width = 1800) -- doesn't work
 
