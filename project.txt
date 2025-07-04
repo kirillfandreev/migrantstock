@@ -1,5 +1,4 @@
-Migrant stock at a Glance Shiny APP
+U:\home\FFP\ABR\scripts\kaspline.r
+u:\united nations\desa-pop - mus\ms\countries\new zealand\pubs\2018_census\2018_r_code.r
+C:\akf\work\Rlang\Courses\Wrangling
 
-GitHub version
-
-https://migrantstock.shinyapps.io/migrantstock/

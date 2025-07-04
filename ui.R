@@ -1,6 +1,3 @@
-## TEST
-
-
 library(shiny)
 library(plotly)
 library(shinyjs)
