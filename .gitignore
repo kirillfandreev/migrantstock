@@ -1,3 +1,4 @@
+.gitignore
 .Rproj.user
 .Rhistory
 .RData
@@ -134,3 +135,8 @@ originpubhtm.r
 orign_change.r
 orign_select.r
 msest826.r
+msglobals_DG.r
+msglobals_KD.r
+msglobals_KU.r
+msglobals_NL.r
+msglobals_YH.r
