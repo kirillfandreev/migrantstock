@@ -14,7 +14,10 @@ Andreev, K., Han Y., and Lai, M. (2025). International Migrant Stocks at a Glanc
 Kirill Andreev (http://kirillandreev.com and https://www.linkedin.com/in/kirill-andreev-8bb12362)<br/>
 
 ### Goodies
+Demographic Trends youtube channel<br/>
+
 &nbsp;&nbsp;&nbsp;&nbsp;https://www.youtube.com/@DemographicTrends
+
 <br/>or animations at LinkedIn<br/>
 
 &nbsp;&nbsp;&nbsp;&nbsp;https://www.linkedin.com/in/kirill-andreev-8bb12362/recent-activity/all/
