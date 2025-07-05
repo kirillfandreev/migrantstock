@@ -15,7 +15,6 @@ Kirill Andreev (http://kirillandreev.com and https://www.linkedin.com/in/kirill-
 
 ### Goodies
 &nbsp;&nbsp;&nbsp;&nbsp;https://www.youtube.com/@DemographicTrends
-
 <br/>or animations at LinkedIn<br/>
 
 &nbsp;&nbsp;&nbsp;&nbsp;https://www.linkedin.com/in/kirill-andreev-8bb12362/recent-activity/all/
