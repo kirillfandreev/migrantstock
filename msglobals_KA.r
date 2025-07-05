@@ -1,6 +1,9 @@
+# Global variables and folders for migrant stock project for user Kirill Andreev (KA)
+# This function is executed at startup by msglobalsf.r.
 # source("msglobalsf.r")
 # @@@all
 # @@@locid
+
 msglobals_KA <- function() {
     
     # msglobals_data <- NULL

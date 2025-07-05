@@ -1,20 +1,19 @@
-# Extracts/produces regular age structure
+# Extracts or produces a regular age structure
 # Description:
-#    Given a data by age groups, the procedure produces a regular age partition by 
-#   a) separating grand total, subtotals and unknown age groups (dsext);
-#   b) filling gaps between age groups to make the age scale continuous (dsreg).
+#   Given age-grouped data, the procedure generates a regular age partition by \
+#       a) isolating grand totals, subtotals, and unknowns (dsext); 
+#       b) filling gaps between age groups to ensure a continuous age scale (dsreg).
 #
-#   Age groups are not necessarily must be integer.  If deaths, for example, 
-#   are available by Lexis triangles one can assign value of 0.5 to length 
-#   of the age groups and apply this procedure.
+#   Age groups need not be integers; for example, when deaths are reported via Lexis triangles, 
+#   an age interval length of 0.5 can be assigned and this procedure could be applied as well.
 # 
 # Parameters:
-#   df – dataset with columns 
+#   df – dataset with the following columns 
 #       df$age
 #       df$agelength
 #       df$value
 # Returns:
-#   dfage$dfreg - dataset with regular age groups
+#   dfage$dfreg - dataset with the regular age groups
 #   dfage$dfext - extra age groups: grand total, subtotals, and unknown age groups.
 
 # Revision history: 
@@ -203,23 +202,12 @@ while (i <= n) {
         
         break
         
-        # print("# no next age group exists: select the age group with the longest interval -- not implemented")
-        # browser()
-        
     }# next age group exists 
-    
-    
+
     # advance index i to the next age group
     i <- j;
     
 } # i-loop over all age groups
-
-
-# browser()
-# 
-# print(df)
-# 
-# stop("ageregular")
 
 # recode +Inf as 0
 if(!is.null(dfage$dfreg)){

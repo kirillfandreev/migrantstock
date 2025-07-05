@@ -1,14 +1,16 @@
-# Estimation for the data range
+# Estimation for the data range of empirical data 
 #
 # Description:
 #   
-# Output: HTML reports e.g.
+# Output
+#   HTML reports e.g.
 #
 # Revision history: 
 # 
 # 2024/10/15
 #   First version created. 
 #   Yu Han (linkedin.com/in/dr-eng-yu-han-85353176)
+#   Kirill Andreev (KA) (kirillandreev.com and https://www.linkedin.com/in/kirill-andreev-8bb12362)
 
 msestdatarangex <- function(df, yfits) {
   # Data frame with empirical data:

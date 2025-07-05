@@ -1,4 +1,15 @@
-# convert age structure into single age groups
+# Converts arbitrary structure into single age groups 
+# Applies linear interpolation assuming uniform distribution within age groups. 
+# Future enhancements may incorporate pchip() or other spline-based methods. 
+# The open age group distributed with a quadratic model fitted to log population of the world from WPP.
+# The current approach is highly robust and handles arbitrary input reliably.
+#
+# Revision history: 
+# 
+# 2024/6
+#   First version.
+#   Kirill Andreev (kirillandreev.com and https://www.linkedin.com/in/kirill-andreev-8bb12362) (KA)
+
 agesingle <- function (df) {
     
 ###browser()

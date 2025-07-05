@@ -1,4 +1,18 @@
-# LocIDs into LongName or niso3locid
+# Converts country numeric code (LocID) into long name or niso3locid (combination of the long name, iso3 code, and locid)
+# See rftLocation.xlsx for the format.
+# Parameters 
+#   LocIDs - a vector of numeric country identifiers 
+#   niso3locid - true to return niso3locid instead of just a long name 
+#
+# See also
+#    longname2locid.r
+#
+# Revision history: 
+# 
+# 2024/6
+#   First version created. 
+#   Kirill Andreev (KA) (kirillandreev.com and https://www.linkedin.com/in/kirill-andreev-8bb12362)
+
 locid2longname <- function(LocIDs, niso3locid = FALSE) {
 
 # browser()
@@ -44,20 +58,3 @@ for(i in 1:n){
 
 return(LongNames)
 }
-
-# # Long Name from rftLocaiton table niso3locid
-# v <- rftLocation[rftLocation$LocID == LocID,]
-# if(nrow(v) == 1){
-#     v2 <- v
-# }else{
-#     if(nrow(v) > 1){
-#         v1 <- v[v$Preferred == 1  & (!is.na(v$Preferred)),]
-#         if(nrow(v1) == 1){
-#             v2 <- v1
-#         }else{
-#             v2 <- v1[1,]
-#         }
-#     }
-# }
-# 
-# niso3locid <- paste0(v2$LongName, "_", v2$ISO3, "_", LocID)

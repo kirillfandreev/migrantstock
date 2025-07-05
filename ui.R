@@ -209,7 +209,6 @@ ui = fluidPage(
              ), value = 5
     ),
     
-    
     # tabPanel("Age",
     #          fluidPage(
     #              

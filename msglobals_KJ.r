@@ -1,3 +1,5 @@
+# Global variables and folders for migrant stock project for user Kirill Andreev (KA), UN notebook, JB's office 
+# This function is executed at startup by msglobalsf.r.
 # source("msglobalsf.r")
 # @@@all
 # @@@locid

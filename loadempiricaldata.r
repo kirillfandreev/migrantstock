@@ -1,8 +1,8 @@
 # Loads empirical data on migrant stocks 
 # Parameters 
 #   from 
-#       NULL - from .\data folder for migrantstock shiny application  
-#       empirical  - empirical folder 
+#       NULL - from .\data folder for the migrantstock shiny application  
+#       empirical    - empirical folder 
 #       empiricalall - empiricalal folder
 #
 # Examples:
@@ -19,11 +19,10 @@
 # 2020/10/17
 #   First version created. 
 #   Tested on the data for Australia (Trend in total migrant stocks in Australia is significantly affected by COVID-19).
-#   Kirill Andreev (kirillandreev.com and https://www.linkedin.com/in/kirill-andreev-8bb12362)
+#   Kirill Andreev (KA) (kirillandreev.com and https://www.linkedin.com/in/kirill-andreev-8bb12362)
 #
 # 2023/2/13
-#   Several updates and loading of data by origin
-#   Kirill Andreev (kirillandreev.com and https://www.linkedin.com/in/kirill-andreev-8bb12362)
+#   Several updates and loading of the data by country of origin (KA)
 #
 # 2023/5/25
 #   Added "from" parameter (KA)
@@ -34,9 +33,7 @@ source("msload.r", local = TRUE)
 
 loadEmpiricalData <- function(from = NULL, IncludeRevisions = FALSE, LocIDp = NULL) {
     
-    # migrantstock_shiny
-    
-    # browser() 
+    ###browser() 
     
     # update global variables with data
     force(msglobalsf("EmpiricalData", NULL))
@@ -58,13 +55,6 @@ loadEmpiricalData <- function(from = NULL, IncludeRevisions = FALSE, LocIDp = NU
         return(NULL)
     }
 
-    # if(!any(LocID == LocIDs)){
-    #   return(NULL)
-    # }
-    
-    # fname <- paste0("data/", LocID, "_EmpiricalData.ms.csv")
-    # EmpiricalData <<- read_csv(fname)
-    
     df  <- NULL
     dfa <- NULL
     
@@ -168,12 +158,11 @@ loadEmpiricalData <- function(from = NULL, IncludeRevisions = FALSE, LocIDp = NU
     # default sort 
     # see "Notes on RLang.docx"
     
-    # variables to sort, including numeric and character 
+    # variables to sort, including numeric and character (!!! alternatively we can sort in ms_scan and skip sorting here …)
     vsort <- msglobalsf("DEFAULT_SORT_ORDER")
     # EmpiricalData <- EmpiricalData %>% arrange(!!!vsort)    # doesn't always work
     # call of order(df$source, df$LocID, ...) and use the returned index to select rows from df
     EmpiricalData <- EmpiricalData[do.call(what = order, args = EmpiricalData[vsort]),]
-    #!!!fixme -- Alternatively we can sort in ms_scan and skip sorting here …
 
     # select empirical data on total migrant stock
     df0 <- EmpiricalData  %>%  filter(sex == 0 & age == 0 & agelength == 0 & LocIDorg == 0) 
@@ -197,23 +186,11 @@ loadEmpiricalData <- function(from = NULL, IncludeRevisions = FALSE, LocIDp = NU
     # EmpiricalData <<- EmpiricalData  %>%
     #   filter(sex == 0 & age == 0 & agelength == 0 & LocIDorg == 0 & PopulationUniverse == 3) %>%  #!!! msglobals[["PU_FOREIGNBORN"]] here
     #   select(yearref, value, source)
-    
     # summary(EmpiricalData)
     # summary(EmpiricalDataTotal)
 
-    # ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-    # >  unique(EmpiricalData$source)
-    # [1] "NSO"             "NSO_1995"        "NSO_1998"        "UNSDDYB_B59_CJC" "UNSDDYB_B09_CJC"
-    
-    # SeriesNames <<- unique(EmpiricalDataTotal$source)
-
-    # select empirical data on origin
-    # print("Current LocIDorg")
-    # print(LocIDorgv)
-    
-    
     # origins
-    # browser()
+    ####browser()
     
     # current origin
     LocIDorgv <- msglobalsf("LocIDorg")     
@@ -243,19 +220,15 @@ loadEmpiricalData <- function(from = NULL, IncludeRevisions = FALSE, LocIDp = NU
     
     EmpiricalDataTotalOrigin <- df;
 
-    # update globals 
+    # update global variables
     force(msglobalsf("EmpiricalData", EmpiricalData))
     force(msglobalsf("EmpiricalDataTotal", EmpiricalDataTotal))
     force(msglobalsf("EmpiricalDataTotalOrigin", EmpiricalDataTotalOrigin))
     force(msglobalsf("EmpiricalDataPopulationUniverse", EmpiricalDataPopulationUniverse))
     force(msglobalsf("EmpiricalDataFileName", fname))
-   
-    
+
     return(EmpiricalData)
-    
-    # browser()
-    # msglobalsf("SeriesNames", SeriesNames)
-   
+
 }
 
 ##################################################################################################

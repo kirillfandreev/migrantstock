@@ -1,4 +1,4 @@
-# Global variables and folders for migrant stock project
+# Global variables and folders for the migrant stock project (migrantstock application)
 # Examples: 
 #   msglobalsf() -- returns all global variables
 #   msglobalsf("SHAREPOINTFOLDER")
@@ -14,14 +14,14 @@
 #   2023/12/15
 #   First version created. 
 #   Tested on the data for Australia (Trend in total migrant stocks in Australia is significantly affected by COVID-19).
-#   Kirill Andreev (kirillandreev.com and https://www.linkedin.com/in/kirill-andreev-8bb12362)
+#   Kirill Andreev (KA) (kirillandreev.com and https://www.linkedin.com/in/kirill-andreev-8bb12362)
 # 
 #   2023/5/4
-#       Updates (Kirill Andreev)
+#       Updates (KA)
 #       Setup for Nicole
 #
 #   2023/5/9
-#       Some error handling code (Kirill Andreev)
+#       Some error handling code (KA)
 
 # See "Notes on RLang.docx"
 
@@ -34,7 +34,6 @@ library("tidyverse")
 library("readxl")
 source("msglobals_KA.r", local = TRUE)
 source("msglobals_KJ.r", local = TRUE)  # UN notebook JB's office 
-
 # source("msglobals_DG.r", local = TRUE)
 # source("msglobals_NL.r", local = TRUE)
 # source("msglobals_KU.r", local = TRUE)
@@ -56,9 +55,8 @@ msglobalsfct <- function() {
     LocIDWORLD <- 900
     LocIDsMS2020sorted <- c(900, 947, 1833, 921, 1832, 1830, 1835, 927, 1829, 901, 902, 934, 948, 941, 1636, 1637, 1503, 1517, 1502, 1501, 1500, 903, 910, 108, 174, 262, 232, 231, 404, 450, 454, 480, 175, 508, 638, 646, 690, 706, 728, 800, 834, 894, 716, 911, 24, 120, 140, 148, 178, 180, 226, 266, 678, 912, 12, 818, 434, 504, 729, 788, 732, 913, 72, 748, 426, 516, 710, 914, 204, 854, 132, 384, 270, 288, 324, 624, 430, 466, 478, 562, 566, 654, 686, 694, 768, 935, 5500, 398, 417, 762, 795, 860, 906, 156, 344, 446, 158, 408, 392, 496, 410, 920, 96, 116, 360, 418, 458, 104, 608, 702, 764, 626, 704, 5501, 4, 50, 64, 356, 364, 462, 524, 586, 144, 922, 51, 31, 48, 196, 268, 368, 376, 400, 414, 422, 512, 634, 682, 275, 760, 792, 784, 887, 908, 923, 112, 100, 203, 348, 616, 498, 642, 643, 703, 804, 924, 830, 208, 233, 234, 246, 352, 372, 833, 428, 440, 578, 752, 826, 925, 8, 20, 70, 191, 292, 300, 336, 380, 470, 499, 807, 620, 674, 688, 705, 724, 926, 40, 56, 250, 276, 438, 442, 492, 528, 756, 904, 915, 660, 28, 533, 44, 52, 535, 92, 136, 192, 531, 212, 214, 308, 312, 332, 388, 474, 500, 630, 652, 659, 662, 663, 670, 534, 780, 796, 850, 916, 84, 188, 222, 320, 340, 484, 558, 591, 931, 32, 68, 76, 152, 170, 218, 238, 254, 328, 600, 604, 740, 858, 862, 905, 60, 124, 304, 666, 840, 909, 927, 36, 554, 928, 242, 540, 598, 90, 548, 954, 316, 296, 584, 583, 520, 580, 585, 957, 16, 184, 258, 570, 882, 772, 776, 798, 876, 2003)
     LocIDs2020Countries  <- LocIDsMS2020sorted[LocIDsMS2020sorted < LocIDWORLD]
-    # Country assignments by analyst from 
-    # C:\akf\DESA-POP-MUS\MS\docs\Migrant_Stock_Project_Overview.xlsx
-    # #fixme – need to read from Excel file
+    # Country assignments from C:\akf\DESA-POP-MUS\MS\docs\Migrant_Stock_Project_Overview.xlsx
+    #!!!fixme – need to read from Excel file
     LocIDsAnalyst <- list(c(840,	276,	643,	826,	250,	124,	36,	724,	380,	792,	804,	398,	392,	702,	756,	528,	56,	752,	40,	554,	300,	860,	112,	620,	372,	578,	688,	616,	208,	642,	348,	203,	191,	246,	442,	705,	762,	31,	428,	233,	417,	703,	795,	196,	51,	100,	440,	807,	470,	498,	830,	316,	268,	499,	352,	8,	20,	70,	492,	438,	16,	580,	60,	292,	234,	304,	666,	336))
     names(LocIDsAnalyst) <- c("KA")
 
@@ -103,7 +101,7 @@ msglobalsfct <- function() {
     LocIDDataAnalyst <- LocIDsAllCountries
     LocIDsSelected   <- LocIDsAllCountries    # selected countries or one country to run 
 
-    # global variables for user Kirill at KASPECTRA computer
+    # global variables for user Kirill Andreev at KASPECTRA computer
     if((Sys.getenv("USERNAME") == "Kirill" && Sys.getenv("COMPUTERNAME") == "KASPECTRA")|
        (Sys.getenv("USERNAME") == "Kirill.Andreev" && Sys.getenv("COMPUTERNAME") == "WIN7ENT-AP8P18S") |
        (Sys.getenv("USERNAME") == "Kirill.Andreev" && Sys.getenv("COMPUTERNAME") == "W10LT-PF3AZK0E")  |
@@ -144,21 +142,6 @@ msglobalsfct <- function() {
         }
     }
     
-    # else 
-    #     if(Sys.getenv("USERNAME") == "Kirill.Andreev" && Sys.getenv("COMPUTERNAME") == "W10LT-PF3AZK0E"){
-    #         # global variables for user Kirill Andreev, UN notebook
-    #         ret <- msglobals_KU()
-    #     }
-    
-    # else 
-    #     if(Sys.getenv("USERNAME") == "Kirill" && Sys.getenv("COMPUTERNAME") == "KADELL23"){
-    #         ret <- msglobals_KD()
-    #     }
-    # 
-
-    # browser()
-    # ret <- NULL
-    # 
     if(!is.null(ret)){
         
         # 
@@ -185,13 +168,6 @@ msglobalsfct <- function() {
         if(is.element("CURRENT_DATA_FOLDER", names(ret))){
             msglobals[["CURRENT_DATA_FOLDER"]] <- ret$CURRENT_DATA_FOLDER
         }
-        
-        # update global variables from ret returned by msglobals_KA() etc
-        # # globals provided by msglobals_??.r
-        # msglobals[["SHAREPOINTFOLDER"]]     <- ret$SHAREPOINTFOLDER
-        # msglobals[["EMPIRICALFOLDER"]]      <- ret$EMPIRICALFOLDER
-        # msglobals[["EMPIRICALFOLDERALL"]]   <- ret$EMPIRICALFOLDERALL
-        # msglobals[["PROJECTFOLDER"]]        <- ret$PROJECTFOLDER
         
         if(is.null(msglobals[["PROJECTFOLDER"]])){
             msg <- "msglobalsf(\"PROJECTFOLDER\") is null"
@@ -290,8 +266,7 @@ msglobalsfct <- function() {
         }
     }
 
-    # Population universe constants 
-    # Data are from rftPopulationUniverse.xlsx table
+    # Population universe constants from rftPopulationUniverse.xlsx table
     # Alternatively we can use factors or functions PU_TOTAL <- function() {return(0)}
     # neither looks good
     msglobals[["PU_TOTAL"]]                         <- 0
@@ -312,8 +287,6 @@ msglobalsfct <- function() {
     msglobals[["PU_FOREIGNBORN_PU_FOREIGNERS"]] <- -34 # combined PU_FOREIGNBORN and PU_FOREIGNERS
     # series used for computing migrant stocks
     msglobals[["PU_MIGRANT_STOCKS"]] <- c(msglobals$PU_REFUGEES, msglobals$PU_FOREIGNBORN, msglobals$PU_FOREIGNERS, msglobals$PU_ASYLUM_SEEKERS, msglobals$PU_VENEZUELANS_DISPLACED_ABROAD, msglobals$PU_INTERNATIONAL_MIGRANTS, msglobals$PU_OTHER_PEOPLE_IN_NEED, msglobals$PU_NON_PERMANENT_RESIDENTS)
-  
-  # rftPopulationUniverse = msrecode('rftPopulationUniverse');
   
     # output_folder <- substr(output_folder, 1, nchar(output_folder) - 1) # remove last /
     # msglobals[["TEMPORARY_FOLDER"]]  <- "c:/temp/migrantstock/"
@@ -375,7 +348,6 @@ msglobalsfct <- function() {
     }
     
     # Countries to include into the application
-    # all
     fname <- paste0("data/rftLocation_Rev2020.RData") # "data/rftLocation_Rev2020.RData", copy of rftLocation.xlsx from SP updated by msappcompiler.R
     df <- NULL
     if (file.exists(fname)){
@@ -433,10 +405,7 @@ msglobalsfct <- function() {
         message("data/rftLocation.RData not found {{errID=1}}")
         # stop("data/rftLocation.RData not found {{errID=1}}")
     }
-    # df <- read_csv("data/rftLocation.csv")
 
-    # print(df)
-  
     # data loaded into memory for the current LocID and unique series names
     msglobals[["LocID"]]                            <- LocID
     msglobals[["LocIDorg"]]                         <- NULL
