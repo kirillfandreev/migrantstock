@@ -104,8 +104,7 @@ msglobalsfct <- function() {
     # global variables for user Kirill Andreev at KASPECTRA computer
     if((Sys.getenv("USERNAME") == "Kirill" && Sys.getenv("COMPUTERNAME") == "KASPECTRA")|
        (Sys.getenv("USERNAME") == "Kirill.Andreev" && Sys.getenv("COMPUTERNAME") == "WIN7ENT-AP8P18S") |
-       (Sys.getenv("USERNAME") == "Kirill.Andreev" && Sys.getenv("COMPUTERNAME") == "W10LT-PF3AZK0E")  |
-       (Sys.getenv("USERNAME") == "Kirill" && Sys.getenv("COMPUTERNAME") == "KADELL23")){ 
+       (Sys.getenv("USERNAME") == "Kirill.Andreev" && Sys.getenv("COMPUTERNAME") == "W10LT-PF3AZK0E")){  # (Sys.getenv("USERNAME") == "Kirill" && Sys.getenv("COMPUTERNAME") == "KADELL23")
         # browser()
         msglobals[["UserName"]]  <- "KA"
         ret <- msglobals_KA()
@@ -132,13 +131,31 @@ msglobalsfct <- function() {
         ret <- msglobals_DG()
     } else {
         # unknown user / computer 
+        
+        # Check if it is running at the website or locally         
         isLocal <- Sys.getenv('SHINY_PORT') == ""
         # Sys.getenv('SHINY_PORT') = 42331 or "" if runs locally 
         
+        
         if(isLocal){
+            
+            # If the application is running locally and there's no user-specific file containing global variables, 
+            # attempt to define them to ensure the app starts successfully. 
+            # Can this fail? Would Sys.getenv() be a better approach? 
+            
+            msg <- paste0("<", Sys.getenv("USERNAME"), "> : <", Sys.getenv("COMPUTERNAME"), ">  -- no user-specific file (e.g. msglobals_??.r) is found. Check msglobalsf.r")
+            print(msg)
+            
+            ret <- NULL
+            ret$PROJECTFOLDER       	<- getwd()				# the folder with R scripts e.g. server.r, ui.r etc.  "C:/akf/mus/MS/scripts/migrantstock/"   
+            ret$SHAREPOINTFOLDER    	<- "C:/akf/mus/MS/"		# 
+            ret$CURRENT_DATA_FOLDER 	<- NULL     			# Use all data --  uncomment to run at all data (!!!) "C:/akf/DESA-POP-MUS/MS/processing/empiricalall/"
+            ret$LocIDsSelected        	<- "all" 				#
+            ret$LocIDsOriginSelected	<- "all"          		# countries of origins 235
+            
             # throw an error if not online 
-            msg <- paste0("<", Sys.getenv("USERNAME"), "> : <", Sys.getenv("COMPUTERNAME"), ">  -- no global folders implemented in msglobalsf.r")
-            stop(msg)
+#            msg <- paste0("<", Sys.getenv("USERNAME"), "> : <", Sys.getenv("COMPUTERNAME"), ">  -- no global folders implemented in msglobalsf.r")
+#            stop(msg)
         }
     }
     
